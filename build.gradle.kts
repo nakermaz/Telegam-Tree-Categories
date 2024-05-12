@@ -22,6 +22,8 @@ dependencies {
 	implementation("org.telegram:telegrambots:6.9.7.1")
 	implementation("org.springframework.boot:spring-boot-starter:3.2.5")
 	implementation("org.telegram:telegrambots-spring-boot-starter:6.9.7.1")
+	implementation("org.postgresql:postgresql:42.7.3")
+	compileOnly("org.projectlombok:lombok:1.18.32")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 }

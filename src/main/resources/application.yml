@@ -1,3 +1,4 @@
-spring:
-  application:
-    name: TelegaCategories
+bot:
+  name: TelegaCategoriesBot
+  token: 6753913476:AAFqF9UGozmkmfd1diuniExEc_9HnmAZdWg
+  chatId:
