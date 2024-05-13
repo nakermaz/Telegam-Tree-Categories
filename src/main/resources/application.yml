@@ -2,3 +2,16 @@ bot:
   name: TelegaCategoriesBot
   token: 6753913476:AAFqF9UGozmkmfd1diuniExEc_9HnmAZdWg
   chatId:
+spring:
+  jpa:
+    database: PostgreSQL
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/tg
+    username: postgres
+    password: postgres
+
+
