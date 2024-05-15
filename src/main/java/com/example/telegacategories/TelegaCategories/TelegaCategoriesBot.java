@@ -1,5 +1,6 @@
 package com.example.telegacategories.TelegaCategories;
 
+import com.example.telegacategories.TelegaCategories.service.CategoryService;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class TelegaCategoriesBot extends TelegramLongPollingBot implements BotCommands {
     private final BotConfig config;
+    private final CategoryService categoryService;
 
     @Autowired
-    public TelegaCategoriesBot(BotConfig config) {
+    public TelegaCategoriesBot(BotConfig config, CategoryService categoryService) {
         this.config = config;
+        this.categoryService = categoryService;
         try {
             this.execute(new SetMyCommands(LIST_OF_COMMANDS, new BotCommandScopeDefault(), null));
         } catch (TelegramApiException e ){
@@ -71,6 +74,9 @@ public class TelegaCategoriesBot extends TelegramLongPollingBot implements BotCo
             case "/help":
                 sendHelpText(chatId, HELP_TEXT);
                 break;
+            case "/createCTG":
+                createCTG(chatId, username);
+                break;
             default: break;
         }
 
@@ -98,6 +104,20 @@ public class TelegaCategoriesBot extends TelegramLongPollingBot implements BotCo
         try {
             execute(message);
             System.out.println("Ответ отправлен");
+        } catch (TelegramApiException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void createCTG(long chatId, String username){
+        SendMessage message = new SendMessage();
+        message.setChatId(chatId);
+        message.setText("Хорошо, " + username + "вот данные дерева: \n"
+                + categoryService.getCategories());
+
+        try {
+            execute(message);
+            System.out.println("деверо отправлен");
         } catch (TelegramApiException e){
             System.out.println(e.getMessage());
         }
