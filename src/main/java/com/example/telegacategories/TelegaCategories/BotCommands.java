@@ -8,16 +8,16 @@ public interface BotCommands {
     List<BotCommand> LIST_OF_COMMANDS = List.of(
             new BotCommand("/start", "start bot"),
             new BotCommand("/help", "bot info"),
-            new BotCommand("/createCTG", "create category"),
-            new BotCommand("/addChildren", "add children")
+            new BotCommand("/viewTree", "we get a list of categories"),
+            new BotCommand("/addElement", "add element to db")
     );
 
     String HELP_TEXT = "Это бот для создания дерево категории. " +
             "Вам доступны следующие команды:\n" +
             "/start - запускает работу бота\n" +
             "/help - меню помощи \n" +
-            "/createCTG - создание категории \n" +
-            "/addChildren - добавление детей к родительской категории \n";
+            "/viewTree - получение списка всех категории в структурированном виде\n" +
+            "/addElement - добавление элемента в бд \n";
 
 
 }

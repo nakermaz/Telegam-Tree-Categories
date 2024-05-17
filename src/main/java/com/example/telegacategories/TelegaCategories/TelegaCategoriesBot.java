@@ -67,17 +67,15 @@ public class TelegaCategoriesBot extends TelegramLongPollingBot implements BotCo
 
     private void botAnswerUtils(String receivedMessage, long chatId, String username){
 
-        switch(receivedMessage){
-            case "/start":
-                startBot(chatId, username);
-                break;
-            case "/help":
-                sendHelpText(chatId, HELP_TEXT);
-                break;
-            case "/createCTG":
-                createCTG(chatId, username);
-                break;
-            default: break;
+        if (receivedMessage.equals("/start")){
+            startBot(chatId, username);
+        } else if (receivedMessage.equals("/help")){
+            sendHelpText(chatId, HELP_TEXT);
+        } else if (receivedMessage.equals("/viewTree")){
+            getCategories(chatId, username);
+        } else if (receivedMessage.startsWith("/addElement ")){
+            String element = receivedMessage.substring("/addElement ".length());
+            addElement(chatId, element);
         }
 
     }
@@ -109,7 +107,7 @@ public class TelegaCategoriesBot extends TelegramLongPollingBot implements BotCo
         }
     }
 
-    public void createCTG(long chatId, String username){
+    public void getCategories(long chatId, String username){
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
         message.setText("Хорошо, " + username + "вот данные дерева: \n"
@@ -118,6 +116,19 @@ public class TelegaCategoriesBot extends TelegramLongPollingBot implements BotCo
         try {
             execute(message);
             System.out.println("деверо отправлен");
+        } catch (TelegramApiException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void addElement(long chatId, String element){
+        SendMessage message = new SendMessage();
+        message.setChatId(chatId);
+        message.setText(categoryService.addElement(element));
+
+        try {
+            execute(message);
+            System.out.println("отправлена информация об создания элемента");
         } catch (TelegramApiException e){
             System.out.println(e.getMessage());
         }
