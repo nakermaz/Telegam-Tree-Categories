@@ -55,6 +55,17 @@ public class CategoryService {
         }
     }
 
+    public String deleteTreeElements(String nameTree){
+        Optional<Category> optionalCategory = categoryRepository.findByName(nameTree);
+        if (optionalCategory.isPresent()){
+            System.out.println("пришла инфа");
+            Category category = optionalCategory.get();
+            categoryRepository.delete(category);
+            return "Дерево " + nameTree + " успешно удалена.";
+        }
+        return "Ошибка в названии.";
+    }
+
 
 
     public String printTree(List<Category> categories, String prefix) {

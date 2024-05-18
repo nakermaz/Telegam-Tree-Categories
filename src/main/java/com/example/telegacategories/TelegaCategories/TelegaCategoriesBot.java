@@ -76,6 +76,9 @@ public class TelegaCategoriesBot extends TelegramLongPollingBot implements BotCo
         } else if (receivedMessage.startsWith("/addElement ")){
             String element = receivedMessage.substring("/addElement ".length());
             addElement(chatId, element);
+        } else if (receivedMessage.startsWith("/removeElement ")){
+            String element = receivedMessage.substring("/removeElement ".length());
+            deleteTree(chatId, element);
         }
 
     }
@@ -129,6 +132,19 @@ public class TelegaCategoriesBot extends TelegramLongPollingBot implements BotCo
         try {
             execute(message);
             System.out.println("отправлена информация об создания элемента");
+        } catch (TelegramApiException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteTree(long chatId, String element){
+        SendMessage message = new SendMessage();
+        message.setChatId(chatId);
+        message.setText(categoryService.deleteTreeElements(element));
+
+        try {
+            execute(message);
+            System.out.println("отправлена информация об удалении дерево");
         } catch (TelegramApiException e){
             System.out.println(e.getMessage());
         }

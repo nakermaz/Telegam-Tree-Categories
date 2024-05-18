@@ -9,7 +9,8 @@ public interface BotCommands {
             new BotCommand("/start", "start bot"),
             new BotCommand("/help", "bot info"),
             new BotCommand("/viewTree", "we get a list of categories"),
-            new BotCommand("/addElement", "add element to db")
+            new BotCommand("/addElement", "add element to db"),
+            new BotCommand("/removeElement", "delete tree category")
     );
 
     String HELP_TEXT = "Это бот для создания дерево категории. " +
@@ -17,7 +18,7 @@ public interface BotCommands {
             "/start - запускает работу бота\n" +
             "/help - меню помощи \n" +
             "/viewTree - получение списка всех категории в структурированном виде\n" +
-            "/addElement - добавление элемента в бд \n";
-
+            "/addElement - добавление элемента в бд \n" +
+            "/removeElement - уделение целого элемента дерева из бд \n ";
 
 }

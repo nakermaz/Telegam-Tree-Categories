@@ -10,6 +10,8 @@ public class Buttons {
     private static final InlineKeyboardButton HELP_BUTTON = new InlineKeyboardButton("Help");
     private static final InlineKeyboardButton CREATE_CTG_BUTTON = new InlineKeyboardButton("View Tree");
     private static final InlineKeyboardButton ADD_CHILDREN_BUTTON = new InlineKeyboardButton("Add Element");
+    private static final InlineKeyboardButton DELETE_TREE_BUTTON = new InlineKeyboardButton("Add Element");
+
 
     public static InlineKeyboardMarkup inlineMarkup(){
         START_BUTTON.setCallbackData("/start");
