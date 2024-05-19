@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  postgres:
+    image: 'postgres:15'
+    container_name: 'java-postgres'
+    environment:
+      - 'POSTGRES_DB=postgres'
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=postgres'
+    ports:
+      - '5432:5432'
+
+  backend:
+    build: ./
+    container_name: 'java-backend'
+    ports:
+      - '8080:8080'
+    depends_on:
+      - 'postgres'
