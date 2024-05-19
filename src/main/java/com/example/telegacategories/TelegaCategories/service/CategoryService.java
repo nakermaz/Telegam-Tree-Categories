@@ -66,8 +66,6 @@ public class CategoryService {
         return "Ошибка в названии.";
     }
 
-
-
     public String printTree(List<Category> categories, String prefix) {
         StringBuilder sb = new StringBuilder();
         for (Category category : categories) {
